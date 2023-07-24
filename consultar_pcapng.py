@@ -19,7 +19,10 @@ def leer_pcapng(archivo, protocolo, ip_destino=None, puerto_destino=None):
 
 
 # Reemplaza 'archivo.pcapng' con la ruta y nombre de tu archivo .pcapng
-nombre_archivo = r"C:\Users\franciscojavier.mart\Documents\Scrips\Leer_wireshark\fichero_prueba.pcapng"
-protocolo_filtrar = 'TCP'  # Puedes cambiar esto a 'IP' o 'UDP' según lo necesites
+nombre_archivo = r"C:\Users\franciscojavier.mart\Documents\Scripts\Consultas_Wireshrak-1\fichero_prueba.pcapng"
+protocolo_filtrar = 'IP'  # Puedes cambiar esto a 'IP' o 'UDP' según lo necesites
 ip_destino_filtrar = None  # Reemplaza con la IP de destino deseada (o déjalo como None)
 puerto_destino_filtrar = None # Reemplaza con el puerto de destino deseado (o déjalo como None)
+
+# Llamar a la función para leer el archivo .pcapng y aplicar los filtros especificados
+leer_pcapng(nombre_archivo, protocolo_filtrar, ip_destino_filtrar, puerto_destino_filtrar)
