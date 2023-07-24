@@ -15,6 +15,16 @@ def leer_pcapng(archivo, protocolo, ip_destino=None, puerto_destino=None):
                     if ip_destino is None or pkt[IP].dst == ip_destino:
                         # Imprimir el paquete si coincide con el protocolo y la dirección IP de destino (si se proporciona)
                         print(pkt)
+                elif protocolo == 'TCP' and TCP in pkt:
+                    if ip_destino is None or pkt[IP].dst == ip_destino:
+                        if puerto_destino is None or pkt[TCP].dport == puerto_destino:
+                            # Imprimir el paquete si coincide con el protocolo, la dirección IP de destino y el puerto de destino (si se proporcionan)
+                            print(pkt)
+                elif protocolo == 'UDP' and UDP in pkt:
+                    if ip_destino is None or pkt[IP].dst == ip_destino:
+                        if puerto_destino is None or pkt[UDP].dport == puerto_destino:
+                            # Imprimir el paquete si coincide con el protocolo, la dirección IP de destino y el puerto de destino (si se proporcionan)
+                            print(pkt)
     # Manejar el caso en el que el archivo no se encuentre
     except FileNotFoundError:
         print(f"El archivo '{archivo}' no se encontró.")
@@ -26,7 +36,7 @@ def leer_pcapng(archivo, protocolo, ip_destino=None, puerto_destino=None):
 
 # Reemplaza 'archivo.pcapng' con la ruta y nombre de tu archivo .pcapng
 nombre_archivo = r"C:\Users\franciscojavier.mart\Documents\Scripts\Consultas_Wireshrak-1\fichero_prueba.pcapng"
-protocolo_filtrar = 'IP'  # Puedes cambiar esto a 'IP' o 'UDP' según lo necesites
+protocolo_filtrar = 'TCP'  # Puedes cambiar esto a 'IP' o 'UDP' según lo necesites
 ip_destino_filtrar = None  # Reemplaza con la IP de destino deseada (o déjalo como None)
 puerto_destino_filtrar = None # Reemplaza con el puerto de destino deseado (o déjalo como None)
 
