@@ -9,6 +9,12 @@ from scapy.layers.inet import IP, TCP, UDP
 def leer_pcapng(archivo, protocolo, ip_destino=None, puerto_destino=None):
     try:
         with PcapNgReader(archivo) as pcap_reader:
+            for pkt in pcap_reader:
+                # Filtrar paquetes por el protocolo proporcionado
+                if protocolo == 'IP' and IP in pkt:
+                    if ip_destino is None or pkt[IP].dst == ip_destino:
+                        # Imprimir el paquete si coincide con el protocolo y la dirección IP de destino (si se proporciona)
+                        print(pkt)
     # Manejar el caso en el que el archivo no se encuentre
     except FileNotFoundError:
         print(f"El archivo '{archivo}' no se encontró.")
